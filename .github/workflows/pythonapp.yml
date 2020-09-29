@@ -32,7 +32,7 @@ jobs:
           python -m pydocstyle .
       - name: Install UFL
         run: |
-          pip install setuptools_scm
+          pip install setuptools_scm wheel
           pip install .
       - name: Run unit tests
         run: |
