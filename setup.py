@@ -3,18 +3,9 @@
 from setuptools import setup
 import sys
 
-module_name = "ufl"
-
-if sys.version_info < (3, 5):
-    print("Python 3.5 or higher required, please upgrade.")
+if sys.version_info < (3, 6):
+    print("Python 3.6 or higher required, please upgrade.")
     sys.exit(1)
-
-version = "2019.2.0.dev0"
-
-url = "https://bitbucket.org/fenics-project/{}/".format(module_name)
-tarball = None
-if 'dev' not in version:
-    tarball = url + "downloads/fenics-{}-{}.tar.gz".format(module_name, version)
 
 CLASSIFIERS = """\
 Development Status :: 5 - Production/Stable
@@ -35,12 +26,12 @@ Topic :: Software Development :: Libraries :: Python Modules
 
 setup(
     name="fenics-ufl",
-    version=version,
     description="Unified Form Language",
     author="Martin Sandve Alnæs, Anders Logg",
     author_email="fenics-dev@googlegroups.com",
-    url=url,
-    download_url=tarball,
+    url="https://github.com/FEniCS/ufl",
+    setup_requires=["setuptools_scm"],
+    use_scm_version={"parentdir_prefix_version": "ufl-"},
     classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
     packages=[
         "ufl",
