@@ -208,13 +208,15 @@ htmlhelp_basename = 'UnifiedFormLanguageUFLdoc'
 
 latex_elements = {
 # The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+'papersize': 'a4paper',
 
 # The font size ('10pt', '11pt' or '12pt').
 #'pointsize': '10pt',
 
 # Additional stuff for the LaTeX preamble.
-#'preamble': '',
+'preamble': '\usepackage[utf8x]{inputenc}',
+
+'inputenc':'',
 
 # Latex figure (float) alignment
 #'figure_align': 'htbp',
@@ -295,7 +297,7 @@ def run_apidoc(_):
                                             os.path.pardir, os.path.pardir))
     apidoc_dir = os.path.join(sphinx_source_dir, "api-doc")
 
-    from sphinx.apidoc import main
+    from sphinx.ext.apidoc import main
     for module in modules:
         # Generate .rst files ready for autodoc
         module_dir = os.path.join(repo_dir, module)

@@ -1,10 +1,16 @@
 Changelog
 =========
 
-2019.2.0.dev0
+2020.1.0
 -------------
 
-- No changes yet.
+- Improve Python3 support, removing outdated code
+- Better compliance to pydocstyle
+- Reimplementation of ufl.Constant
+- Updates to licensing information using SPDX format
+- Register Arnold-Winther (conforming and non-conforming) and Mardal-Tai-Winther elements.
+- Register Kong-Mulder-Veldhuizen element, which admits mass lumping on the simplex
+
 
 2019.1.0 (2019-04-17)
 ---------------------

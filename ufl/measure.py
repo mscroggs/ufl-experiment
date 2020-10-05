@@ -205,7 +205,7 @@ class Measure(object):
         new values.
 
         Example:
-        -------
+        --------
             <dm = Measure instance>
             b = dm.reconstruct(subdomain_id=2)
             c = dm.reconstruct(metadata={ "quadrature_degree": 3 })
@@ -288,7 +288,10 @@ class Measure(object):
         integration type with an attached context for interpreting
         domain ids. By default this new Measure integrates over
         everywhere, but it can be restricted with a domain id as
-        usual. Example: dx = dx[boundaries]; L = f*v*dx + g*v+dx(1).
+        usual.
+        Example:
+        --------
+        dx = dx[boundaries]; L = f*v*dx + g*v+dx(1).
 
         """
         deprecate("Notation dx[meshfunction] is deprecated. Please use dx(subdomain_data=meshfunction) instead.")

@@ -45,7 +45,7 @@ def extract_blocks(form, i=None, j=None):
     extract the block corresponding to the indices ix, iy.
 
     Example:
-    -------
+    --------
        a = inner(grad(u), grad(v))*dx + div(u)*q*dx + div(v)*p*dx
        extract_blocks(a, 0, 0) -> inner(grad(u), grad(v))*dx
        extract_blocks(a) -> [inner(grad(u), grad(v))*dx, div(v)*p*dx, div(u)*q*dx, 0]
@@ -60,7 +60,7 @@ def lhs(form):
     extract the left hand side (bilinear form part).
 
     Example:
-    -------
+    --------
         a = u*v*dx + f*v*dx
         a = lhs(a) -> u*v*dx
 
@@ -76,7 +76,7 @@ def rhs(form):
     extract the right hand side (negated linear form part).
 
     Example:
-    -------
+    --------
         a = u*v*dx + f*v*dx
         L = rhs(a) -> -f*v*dx
 
@@ -128,7 +128,7 @@ def adjoint(form, reordered_arguments=None):
     By default, new ``Argument`` objects will be created with
     opposite ordering. However, if the adjoint form is to
     be added to other forms later, their arguments must match.
-    In that case, the user must provide a tuple *reordered_arguments*=(u2,v2).
+    In that case, the user must provide a tuple ``reordered_arguments=(u2,v2)``.
     """
     form = as_form(form)
     form = expand_derivatives(form)

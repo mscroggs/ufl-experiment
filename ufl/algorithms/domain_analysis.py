@@ -273,7 +273,7 @@ def group_form_integrals(form, domains, do_append_everywhere_integrals=True):
     """Group integrals by domain and type, performing canonical simplification.
 
     :arg form: the :class:`~.Form` to group the integrals of.
-    :arg domains: an iterable of :class:`~.Domain`s.
+    :arg domains: an iterable of :class:`~.Domain` s.
     :returns: A new :class:`~.Form` with gathered integrands.
     """
     # Group integrals by domain and type
