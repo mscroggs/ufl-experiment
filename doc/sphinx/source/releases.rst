@@ -8,7 +8,7 @@ Release notes
 .. toctree::
    :maxdepth: 2
 
-   releases/next
+   releases/v2020.1.0
    releases/v2019.1.0
    releases/v2018.1.0
    releases/v2017.2.0
