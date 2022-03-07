@@ -7,11 +7,10 @@
 #
 # SPDX-License-Identifier:    LGPL-3.0-or-later
 
-from ufl.log import error
 from ufl.core.expr import Expr
 from ufl.core.operator import Operator
 from ufl.core.ufl_type import ufl_type
-
+from ufl.log import error
 
 # --- Non-tensor types ---
 

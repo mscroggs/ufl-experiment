@@ -11,10 +11,10 @@
 # Modified by Marie E. Rognes 2010, 2012
 # Modified by Massimiliano Leoni, 2016
 
-from ufl.utils.sequences import product
-from ufl.utils.dicts import EmptyDict
-from ufl.log import error
 from ufl.cell import AbstractCell, as_cell
+from ufl.log import error
+from ufl.utils.dicts import EmptyDict
+from ufl.utils.sequences import product
 
 
 class FiniteElementBase(object):

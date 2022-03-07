@@ -8,7 +8,7 @@
 # Modified by Massimiliano Leoni, 2016
 
 from ufl.finiteelement.finiteelementbase import FiniteElementBase
-from ufl.sobolevspace import HDiv, HCurl
+from ufl.sobolevspace import HCurl, HDiv
 
 
 class HDivElement(FiniteElementBase):

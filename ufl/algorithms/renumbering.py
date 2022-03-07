@@ -7,12 +7,12 @@
 #
 # SPDX-License-Identifier:    LGPL-3.0-or-later
 
-from ufl.log import error
-from ufl.core.expr import Expr
-from ufl.core.multiindex import Index, FixedIndex, MultiIndex
-from ufl.variable import Label, Variable
 from ufl.algorithms.transformer import ReuseTransformer, apply_transformer
 from ufl.classes import Zero
+from ufl.core.expr import Expr
+from ufl.core.multiindex import FixedIndex, Index, MultiIndex
+from ufl.log import error
+from ufl.variable import Label, Variable
 
 
 class VariableRenumberingTransformer(ReuseTransformer):

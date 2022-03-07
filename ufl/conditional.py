@@ -7,14 +7,14 @@
 #
 # SPDX-License-Identifier:    LGPL-3.0-or-later
 
-from ufl.log import warning, error
-from ufl.core.expr import ufl_err_str
-from ufl.core.ufl_type import ufl_type
-from ufl.core.operator import Operator
-from ufl.constantvalue import as_ufl
-from ufl.precedence import parstr
-from ufl.exprequals import expr_equals
 from ufl.checks import is_true_ufl_scalar
+from ufl.constantvalue import as_ufl
+from ufl.core.expr import ufl_err_str
+from ufl.core.operator import Operator
+from ufl.core.ufl_type import ufl_type
+from ufl.exprequals import expr_equals
+from ufl.log import error, warning
+from ufl.precedence import parstr
 
 # --- Condition classes ---
 

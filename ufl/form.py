@@ -11,17 +11,16 @@
 # Modified by Massimiliano Leoni, 2016.
 # Modified by Cecile Daversin-Catty, 2018.
 
-from itertools import chain
 from collections import defaultdict
+from itertools import chain
 
-from ufl.log import error, warning
-from ufl.domain import sort_domains
-from ufl.integral import Integral
 from ufl.checks import is_scalar_constant_expression
-from ufl.equation import Equation
-from ufl.core.expr import Expr
-from ufl.core.expr import ufl_err_str
 from ufl.constantvalue import Zero
+from ufl.core.expr import Expr, ufl_err_str
+from ufl.domain import sort_domains
+from ufl.equation import Equation
+from ufl.integral import Integral
+from ufl.log import error, warning
 
 # Export list for ufl.classes
 __all_classes__ = ["Form"]

@@ -11,9 +11,9 @@
 # Modified by Massimiliano Leoni, 2016.
 
 import ufl
-from ufl.log import error
-from ufl.core.expr import Expr
 from ufl.checks import is_python_scalar, is_scalar_constant_expression
+from ufl.core.expr import Expr
+from ufl.log import error
 from ufl.measure import Measure  # noqa
 from ufl.protocols import id_or_none
 

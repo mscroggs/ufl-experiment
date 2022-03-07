@@ -12,13 +12,12 @@
 # Modified by Anders Logg 2014
 # Modified by Massimiliano Leoni, 2016
 
+from ufl.cell import TensorProductCell, as_cell
+from ufl.finiteelement.elementlist import (canonical_element_description,
+                                           simplices)
+from ufl.finiteelement.finiteelementbase import FiniteElementBase
 from ufl.log import error
 from ufl.utils.formatting import istr
-from ufl.cell import as_cell
-
-from ufl.cell import TensorProductCell
-from ufl.finiteelement.elementlist import canonical_element_description, simplices
-from ufl.finiteelement.finiteelementbase import FiniteElementBase
 
 
 class FiniteElement(FiniteElementBase):
@@ -43,9 +42,11 @@ class FiniteElement(FiniteElementBase):
 
         if isinstance(cell, TensorProductCell):
             # Delay import to avoid circular dependency at module load time
-            from ufl.finiteelement.tensorproductelement import TensorProductElement
             from ufl.finiteelement.enrichedelement import EnrichedElement
-            from ufl.finiteelement.hdivcurl import HDivElement as HDiv, HCurlElement as HCurl
+            from ufl.finiteelement.hdivcurl import HCurlElement as HCurl
+            from ufl.finiteelement.hdivcurl import HDivElement as HDiv
+            from ufl.finiteelement.tensorproductelement import \
+                TensorProductElement
 
             family, short_name, degree, value_shape, reference_value_shape, sobolev_space, mapping = \
                 canonical_element_description(family, cell, degree, form_degree)

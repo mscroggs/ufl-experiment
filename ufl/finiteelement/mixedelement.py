@@ -12,15 +12,15 @@
 # Modified by Anders Logg 2014
 # Modified by Massimiliano Leoni, 2016
 
+from ufl.cell import as_cell
+from ufl.finiteelement.finiteelement import FiniteElement
+from ufl.finiteelement.finiteelementbase import FiniteElementBase
 from ufl.log import error
 from ufl.permutation import compute_indices
-from ufl.utils.sequences import product, max_degree
 from ufl.utils.dicts import EmptyDict
-from ufl.utils.indexflattening import flatten_multiindex, unflatten_index, shape_to_strides
-from ufl.cell import as_cell
-
-from ufl.finiteelement.finiteelementbase import FiniteElementBase
-from ufl.finiteelement.finiteelement import FiniteElement
+from ufl.utils.indexflattening import (flatten_multiindex, shape_to_strides,
+                                       unflatten_index)
+from ufl.utils.sequences import max_degree, product
 
 
 class MixedElement(FiniteElementBase):

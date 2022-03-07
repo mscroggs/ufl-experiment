@@ -21,7 +21,6 @@ This is to avoid circular dependencies between ``Expr`` and its subclasses.
 
 from ufl.log import error
 
-
 # --- The base object for all UFL expression tree nodes ---
 
 class Expr(object):

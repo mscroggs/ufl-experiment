@@ -9,15 +9,16 @@
 #
 # Modified by Anders Logg, 2008
 
-from ufl.log import error
-from ufl.core.ufl_type import ufl_type
+from ufl.checks import is_true_ufl_scalar, is_ufl_scalar
+from ufl.constantvalue import (ComplexValue, IntValue, ScalarValue, Zero,
+                               as_ufl, zero)
 from ufl.core.expr import ufl_err_str
 from ufl.core.operator import Operator
-from ufl.constantvalue import Zero, zero, ScalarValue, IntValue, ComplexValue, as_ufl
-from ufl.checks import is_ufl_scalar, is_true_ufl_scalar
+from ufl.core.ufl_type import ufl_type
 from ufl.index_combination_utils import merge_unique_indices
-from ufl.sorting import sorted_expr
+from ufl.log import error
 from ufl.precedence import parstr
+from ufl.sorting import sorted_expr
 
 # --- Algebraic operators ---
 
@@ -406,6 +407,7 @@ class Real(Operator):
         Operator.__init__(self, (a,))
 
     def evaluate(self, x, mapping, component, index_values):
+        print("***eval", type(x))
         a = self.ufl_operands[0].evaluate(x, mapping, component, index_values)
         return a.real
 

@@ -10,9 +10,9 @@
 # Modified by Massimiliano Leoni, 2016
 # Modified by Cecile Daversin-Catty, 2018
 
-from ufl.log import error
 from ufl.core.ufl_type import attach_operators_from_hash_data
 from ufl.domain import join_domains
+from ufl.log import error
 
 # Export list for ufl.classes
 __all_classes__ = [

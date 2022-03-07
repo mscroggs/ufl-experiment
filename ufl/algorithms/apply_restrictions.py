@@ -8,11 +8,11 @@
 # SPDX-License-Identifier:    LGPL-3.0-or-later
 
 
-from ufl.log import error
-from ufl.classes import Restricted
-from ufl.corealg.multifunction import MultiFunction
-from ufl.corealg.map_dag import map_expr_dag
 from ufl.algorithms.map_integrands import map_integrand_dags
+from ufl.classes import Restricted
+from ufl.corealg.map_dag import map_expr_dag
+from ufl.corealg.multifunction import MultiFunction
+from ufl.log import error
 from ufl.measure import integral_type_to_measure_name
 
 

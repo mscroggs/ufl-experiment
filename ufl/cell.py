@@ -13,13 +13,12 @@
 # Modified by Andrew T. T. McRae, 2014
 # Modified by Massimiliano Leoni, 2016
 
-import numbers
 import functools
+import numbers
 
 import ufl.cell
-from ufl.log import error
 from ufl.core.ufl_type import attach_operators_from_hash_data
-
+from ufl.log import error
 
 # Export list for ufl.classes
 __all_classes__ = ["AbstractCell", "Cell", "TensorProductCell"]
