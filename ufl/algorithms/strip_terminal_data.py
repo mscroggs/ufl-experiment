@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """Algorithm for replacing form arguments with 'stripped' versions where any
 data-carrying objects have been extracted to a mapping."""
 
 from ufl.classes import Form, Integral
 from ufl.classes import Argument, Coefficient, Constant
-from ufl.classes import FunctionSpace, TensorProductFunctionSpace, MixedFunctionSpace
-from ufl.classes import Mesh, MeshView, TensorProductMesh
+from ufl.classes import FunctionSpace, MixedFunctionSpace
+from ufl.classes import Mesh
 from ufl.algorithms.replace import replace
 from ufl.corealg.map_dag import map_expr_dag
 from ufl.corealg.multifunction import MultiFunction
@@ -97,9 +96,6 @@ def strip_function_space(function_space):
     if isinstance(function_space, FunctionSpace):
         return FunctionSpace(strip_domain(function_space.ufl_domain()),
                              function_space.ufl_element())
-    elif isinstance(function_space, TensorProductFunctionSpace):
-        subspaces = [strip_function_space(sub) for sub in function_space.ufl_sub_spaces()]
-        return TensorProductFunctionSpace(*subspaces)
     elif isinstance(function_space, MixedFunctionSpace):
         subspaces = [strip_function_space(sub) for sub in function_space.ufl_sub_spaces()]
         return MixedFunctionSpace(*subspaces)
@@ -109,13 +105,4 @@ def strip_function_space(function_space):
 
 def strip_domain(domain):
     "Return a new domain with all non-UFL information removed."
-    if isinstance(domain, Mesh):
-        return Mesh(domain.ufl_coordinate_element(), domain.ufl_id())
-    elif isinstance(domain, MeshView):
-        return MeshView(strip_domain(domain.ufl_mesh()),
-                        domain.topological_dimension(), domain.ufl_id())
-    elif isinstance(domain, TensorProductMesh):
-        meshes = [strip_domain(mesh) for mesh in domain.ufl_meshes()]
-        return TensorProductMesh(meshes, domain.ufl_id())
-    else:
-        raise NotImplementedError(f"{type(domain)} cannot be stripped")
+    return Mesh(domain.ufl_coordinate_element(), domain.ufl_id())

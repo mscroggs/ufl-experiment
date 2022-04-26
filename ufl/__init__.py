@@ -46,7 +46,6 @@ A very brief overview of the language contents follows:
 
     - AbstractCell
     - Cell
-    - TensorProductCell
     - vertex
     - interval
     - triangle
@@ -60,8 +59,6 @@ A very brief overview of the language contents follows:
 
     - AbstractDomain
     - Mesh
-    - MeshView
-    - TensorProductMesh
 
 * Sobolev spaces::
 
@@ -79,13 +76,6 @@ A very brief overview of the language contents follows:
     - TensorElement
     - EnrichedElement
     - NodalEnrichedElement
-    - RestrictedElement
-    - TensorProductElement
-    - HDivElement
-    - HCurlElement
-    - BrokenElement
-    - FacetElement
-    - InteriorElement
 
 * Function spaces::
 
@@ -261,8 +251,8 @@ from ufl.log import get_handler, get_logger, set_handler, set_level, add_logfile
 
 # Types for geometric quantities
 
-from ufl.cell import as_cell, AbstractCell, Cell, TensorProductCell
-from ufl.domain import as_domain, AbstractDomain, Mesh, MeshView, TensorProductMesh
+from ufl.cell import as_cell, AbstractCell, Cell
+from ufl.domain import as_domain, AbstractDomain, Mesh
 from ufl.geometry import (
     SpatialCoordinate,
     FacetNormal, CellNormal,
@@ -275,11 +265,8 @@ from ufl.geometry import (
 from ufl.sobolevspace import L2, H1, H2, HDiv, HCurl
 
 # Finite elements classes
-from ufl.finiteelement import FiniteElementBase, FiniteElement, \
-    MixedElement, VectorElement, TensorElement, EnrichedElement, \
-    NodalEnrichedElement, RestrictedElement, TensorProductElement, \
-    HDivElement, HCurlElement, BrokenElement, \
-    FacetElement, InteriorElement, WithMapping
+from ufl.finiteelement import (FiniteElementBase, FiniteElement, MixedElement, VectorElement,
+                               TensorElement, EnrichedElement, NodalEnrichedElement)
 
 # Hook to extend predefined element families
 from ufl.finiteelement.elementlist import register_element, show_elements  # , ufl_elements
@@ -360,63 +347,3 @@ from ufl.objects import (
 
 # Useful constants
 from math import e, pi
-
-
-# Define ufl.* namespace
-__all__ = [
-    'product',
-    'get_handler', 'get_logger', 'set_handler', 'set_level', 'add_logfile',
-    'UFLException', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL',
-    'as_cell', 'AbstractCell', 'Cell', 'TensorProductCell',
-    'as_domain', 'AbstractDomain', 'Mesh', 'MeshView', 'TensorProductMesh',
-    'L2', 'H1', 'H2', 'HCurl', 'HDiv',
-    'SpatialCoordinate',
-    'CellVolume', 'CellDiameter', 'Circumradius',
-    'MinCellEdgeLength', 'MaxCellEdgeLength',
-    'FacetArea', 'MinFacetEdgeLength', 'MaxFacetEdgeLength',
-    'FacetNormal', 'CellNormal',
-    'Jacobian', 'JacobianDeterminant', 'JacobianInverse',
-    'FiniteElementBase', 'FiniteElement',
-    'MixedElement', 'VectorElement', 'TensorElement', 'EnrichedElement',
-    'NodalEnrichedElement', 'RestrictedElement', 'TensorProductElement',
-    'HDivElement', 'HCurlElement',
-    'BrokenElement', 'FacetElement', 'InteriorElement', "WithMapping",
-    'register_element', 'show_elements',
-    'FunctionSpace', 'MixedFunctionSpace',
-    'Argument', 'TestFunction', 'TrialFunction',
-    'Arguments', 'TestFunctions', 'TrialFunctions',
-    'Coefficient', 'Coefficients',
-    'Constant', 'VectorConstant', 'TensorConstant',
-    'split',
-    'PermutationSymbol', 'Identity', 'zero', 'as_ufl',
-    'Index', 'indices',
-    'as_tensor', 'as_vector', 'as_matrix', 'relabel',
-    'unit_vector', 'unit_vectors', 'unit_matrix', 'unit_matrices',
-    'rank', 'shape', 'conj', 'real', 'imag',
-    'outer', 'inner', 'dot', 'cross', 'perp',
-    'det', 'inv', 'cofac',
-    'transpose', 'tr', 'diag', 'diag_vector', 'dev', 'skew', 'sym',
-    'sqrt', 'exp', 'ln', 'erf',
-    'cos', 'sin', 'tan',
-    'acos', 'asin', 'atan', 'atan_2',
-    'cosh', 'sinh', 'tanh',
-    'bessel_J', 'bessel_Y', 'bessel_I', 'bessel_K',
-    'eq', 'ne', 'le', 'ge', 'lt', 'gt', 'And', 'Or', 'Not',
-    'conditional', 'sign', 'max_value', 'min_value', 'Max', 'Min',
-    'variable', 'diff',
-    'Dx', 'grad', 'div', 'curl', 'rot', 'nabla_grad', 'nabla_div', 'Dn', 'exterior_derivative',
-    'jump', 'avg', 'cell_avg', 'facet_avg',
-    'elem_mult', 'elem_div', 'elem_pow', 'elem_op',
-    'Form',
-    'Integral', 'Measure', 'register_integral_type', 'integral_types', 'custom_integral_types',
-    'replace', 'replace_integral_domains', 'derivative', 'action', 'energy_norm', 'rhs', 'lhs', 'extract_blocks',
-    'system', 'functional', 'adjoint', 'sensitivity_rhs',
-    'dx', 'ds', 'dS', 'dP',
-    'dc', 'dC', 'dO', 'dI', 'dX',
-    'ds_b', 'ds_t', 'ds_tb', 'ds_v', 'dS_h', 'dS_v',
-    'vertex', 'interval', 'triangle', 'tetrahedron',
-    'prism', 'pyramid',
-    'quadrilateral', 'hexahedron', 'facet',
-    'i', 'j', 'k', 'l', 'p', 'q', 'r', 's',
-    'e', 'pi',
-]
