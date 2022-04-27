@@ -15,14 +15,9 @@ mathematical notation.
 UFL is part of the FEniCS Project. For more information, visit
 https://www.fenicsproject.org
 
-.. image:: https://github.com/FEniCS/ufl/workflows/UFL%20CI/badge.svg
-   :target: https://github.com/FEniCS/ufl/workflows/UFL%20CI
-.. image:: https://coveralls.io/repos/github/FEniCS/ufl/badge.svg?branch=master
-   :target: https://coveralls.io/github/FEniCS/ufl?branch=master
-   :alt: Coverage Status
-.. image:: https://readthedocs.org/projects/fenics-ufl/badge/?version=latest
-   :target: https://fenics.readthedocs.io/projects/ufl/en/latest/?badge=latest
-   :alt: Documentation Status
+[![CI badge](https://github.com/FEniCS/ufl/workflows/UFL%20CI/badge.svg)](https://github.com/FEniCS/ufl/workflows/UFL%20CI)
+[![Coverage Status](https://coveralls.io/repos/github/FEniCS/ufl/badge.svg?branch=master)](https://coveralls.io/github/FEniCS/ufl?branch=master)
+[![Documentation Status](https://readthedocs.org/projects/fenics-ufl/badge/?version=latest)](https://fenics.readthedocs.io/projects/ufl/en/latest/?badge=latest)
 
 Documentation
 =============
