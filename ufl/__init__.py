@@ -284,9 +284,6 @@ from ufl.finiteelement import FiniteElementBase, FiniteElement, \
     HDivElement, HCurlElement, BrokenElement, \
     FacetElement, InteriorElement, WithMapping
 
-# Hook to extend predefined element families
-from ufl.finiteelement.elementlist import register_element, show_elements  # , ufl_elements
-
 # Function spaces
 from ufl.functionspace import FunctionSpace, MixedFunctionSpace
 

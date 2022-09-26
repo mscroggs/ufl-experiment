@@ -17,8 +17,106 @@ from ufl.utils.formatting import istr
 from ufl.cell import as_cell
 
 from ufl.cell import TensorProductCell
-from ufl.finiteelement.elementlist import canonical_element_description, simplices
 from ufl.finiteelement.finiteelementbase import FiniteElementBase
+
+simplices = ("interval", "triangle", "tetrahedron")
+
+
+def canonical_element_description(family, cell, order, form_degree):
+    """Given basic element information, return corresponding element information on canonical form.
+
+    Input: family, cell, (polynomial) order, form_degree
+    Output: family (canonical), short_name (for printing), order, value shape,
+    reference value shape, sobolev_space.
+
+    This is used by the FiniteElement constructor to ved input
+    data against the element list and aliases defined in ufl.
+    """
+
+    # Get domain dimensions
+    if cell is not None:
+        tdim = cell.topological_dimension()
+        gdim = cell.geometric_dimension()
+        if isinstance(cell, Cell):
+            cellname = cell.cellname()
+        else:
+            cellname = None
+    else:
+        tdim = None
+        gdim = None
+        cellname = None
+
+    # Catch general FEEC notation "P" and "S"
+    if form_degree is not None and family in ("P", "S"):
+        family, order = feec_element(family, tdim, order, form_degree)
+
+    if form_degree is not None and family in ("P L2", "S L2"):
+        family, order = feec_element_l2(family, tdim, order, form_degree)
+
+    # Check whether this family is an alias for something else
+    while family in aliases:
+        if tdim is None:
+            error("Need dimension to handle element aliases.")
+        (family, order) = aliases[family](family, tdim, order, form_degree)
+
+    # Check that the element family exists
+    if family not in ufl_elements:
+        error('Unknown finite element "%s".' % family)
+
+    # Check that element data is valid (and also get common family
+    # name)
+    (family, short_name, value_rank, sobolev_space, mapping, krange, cellnames) = ufl_elements[family]
+
+    # Accept CG/DG on all kind of cells, but use Q/DQ on "product" cells
+    if cellname in set(cubes) - set(simplices) or isinstance(cell, TensorProductCell):
+        if family == "Lagrange":
+            family = "Q"
+        elif family == "Discontinuous Lagrange":
+            if order >= 1:
+                warning("Discontinuous Lagrange element requested on %s, creating DQ element." % cell.cellname())
+            family = "DQ"
+        elif family == "Discontinuous Lagrange L2":
+            if order >= 1:
+                warning("Discontinuous Lagrange L2 element requested on %s, creating DQ L2 element." % cell.cellname())
+            family = "DQ L2"
+
+    # Validate cellname if a valid cell is specified
+    if not (cellname is None or cellname in cellnames):
+        error('Cellname "%s" invalid for "%s" finite element.' % (cellname, family))
+
+    # Validate order if specified
+    if order is not None:
+        if krange is None:
+            error('Order "%s" invalid for "%s" finite element, '
+                  'should be None.' % (order, family))
+        kmin, kmax = krange
+        if not (kmin is None or (asarray(order) >= kmin).all()):
+            error('Order "%s" invalid for "%s" finite element.' %
+                  (order, family))
+        if not (kmax is None or (asarray(order) <= kmax).all()):
+            error('Order "%s" invalid for "%s" finite element.' %
+                  (istr(order), family))
+
+    if value_rank == 2:
+        # Tensor valued fundamental elements in HEin have this shape
+        if gdim is None or tdim is None:
+            error("Cannot infer shape of element without topological and geometric dimensions.")
+        reference_value_shape = (tdim, tdim)
+        value_shape = (gdim, gdim)
+    elif value_rank == 1:
+        # Vector valued fundamental elements in HDiv and HCurl have a shape
+        if gdim is None or tdim is None:
+            error("Cannot infer shape of element without topological and geometric dimensions.")
+        reference_value_shape = (tdim,)
+        value_shape = (gdim,)
+    elif value_rank == 0:
+        # All other elements are scalar values
+        reference_value_shape = ()
+        value_shape = ()
+    else:
+        error("Invalid value rank %d." % value_rank)
+
+    return family, short_name, order, value_shape, reference_value_shape, sobolev_space, mapping
 
 
 class FiniteElement(FiniteElementBase):
