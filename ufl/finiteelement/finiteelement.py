@@ -14,7 +14,7 @@
 
 from ufl.log import error
 from ufl.utils.formatting import istr
-from ufl.cell import as_cell
+from ufl.cell import as_cell, Cell
 
 from ufl.cell import TensorProductCell
 from ufl.finiteelement.finiteelementbase import FiniteElementBase
